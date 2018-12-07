@@ -5,6 +5,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.util.Log;
 
 import com.tangula.android.utils.ApplicationUtils;
 import com.tangula.android.utils.LogUt;
@@ -67,6 +68,7 @@ public class OrientationSensorFacade {
             if (type == Sensor.TYPE_MAGNETIC_FIELD) {
                 magneticFieldValues = event.values;
             }
+            calculateOrientation();
         }
         public void onAccuracyChanged(Sensor sensor, int accuracy) {
         }
@@ -110,6 +112,7 @@ public class OrientationSensorFacade {
                 }
             }
         }
+        Log.v("console", "Listeners count is "+LISTENERS.size());
     }
 
     public static void unwatch(Consumer<OrientationInfo> listener){
