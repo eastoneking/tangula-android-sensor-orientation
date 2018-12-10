@@ -33,11 +33,17 @@ public class OrientationSensorFacade {
 
     public static void calculateOrientation() {
         float[] values = new float[3];
-        float[] R =  new float[9];
+        //float[] R =  new float[9];
+
+        float[] R = new float[16];
+        float[] I = new float[16];
+
         SensorManager.getRotationMatrix(
-                R, null, accelerometerValues,
+                R, I, accelerometerValues,
                 magneticFieldValues
         );
+
+
         SensorManager.getOrientation(R, values);
 
         OrientationInfo info = new OrientationInfo(

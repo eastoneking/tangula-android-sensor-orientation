@@ -3,6 +3,7 @@ package com.tangula.android.sensor.orientation.testapp;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.tangula.android.base.TglBasicActivity;
 import com.tangula.android.sensor.orientation.OrientationInfo;
@@ -22,7 +23,9 @@ public class MainActivity extends TglBasicActivity {
         OrientationSensorFacade.watch(new Consumer<OrientationInfo>() {
             @Override
             public void accept(OrientationInfo orientationInfo) throws Exception {
-                Log.v("console", ""+orientationInfo.getAzimuthAngle());
+
+
+                ((TextView)findViewById(R.id.vwText)).setText(new java.text.DecimalFormat("000.00").format(orientationInfo.getAzimuthAngle()));
             }
         });
 
